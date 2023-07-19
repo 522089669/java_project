@@ -20,7 +20,6 @@ public class MainView {
         Print.print(" 欢迎进入商城系统 ");
         Print.print("  1.用户登录  ");
         Print.print("  2.用户注册 ");
-        Print.print("  3.人工客服");
         Print.print("请输入操作指令:");
         int key = sc.nextInt();
         MainController.mainController(key);

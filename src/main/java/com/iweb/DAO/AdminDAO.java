@@ -101,10 +101,21 @@ public interface AdminDAO {
      */
     Collection<OrderService> orderCheck();
 
+    /**订单发货状态
+     * @param oid  根据订单编号发货
+     */
+    void orderDeliveroodsUpdate(int oid);
+
+    /**订单退货状态
+     * @param oid  根据订单编号退货
+     */
+    void orderReturnGoodsUpdate(int oid);
+
     /**查看订单详情
      * @return
      */
     Collection<OrderDetailService> orderDetailCheck();
+
 
 
 }

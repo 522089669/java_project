@@ -14,7 +14,31 @@ import java.util.Collection;
  * @Date 2023/7/18 11:31
  */
 public class AdminDAOImpl implements AdminDAO {
+    @Override
+    public void orderDeliveroodsUpdate(int oid) {
+        String sql = "update set order_status = ? from `order` where order_id = ? ";
+        try (Connection c = JDBCUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1,"已发货");
+            ps.setInt(2,oid);
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void orderReturnGoodsUpdate(int oid) {
+        String sql = "update set order_status = ? from `order` where order_id = ?";
+        try(Connection c = JDBCUtil.getConnection();
+        PreparedStatement ps = c.prepareStatement(sql);){
+            ps.setString(1,"已退货");
+            ps.setInt(2,oid);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     //======================================订单查询============================================
     @Override
@@ -23,7 +47,7 @@ public class AdminDAOImpl implements AdminDAO {
         String sql = "select * from `order`";
         try (Connection c = JDBCUtil.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);) {
-             ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int order_id = rs.getInt("order_id");
                 int user_id = rs.getInt("user_id");
